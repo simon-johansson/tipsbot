@@ -1,0 +1,48 @@
+{
+  "name": "tipsbot",
+  "version": "0.0.0",
+  "description": "a Slack bot that gives you useful tips",
+  "keywords": [
+    "Slack",
+    "bot",
+    "tips",
+    "Pragmatic Programmer",
+    "clean code"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simon-johansson/tipsbot"
+  },
+  "bugs": {
+    "url": "https://github.com/simon-johansson/tipsbot/issues"
+  },
+  "main": "lib/tipsbot.js",
+  "bin": {
+    "tipsbot": "bin/bot.js"
+  },
+  "scripts": {
+    "start": "node bin/bot.js",
+    "test": ""
+  },
+  "author": {
+    "name": "Simon Johansson",
+    "email": "mail@simon-johansson.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "async": "^1.4.1",
+    "babel": "^6.5.2",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-register": "^6.5.2",
+    "node-schedule": "^1.0.0",
+    "slackbots": "^0.5.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^4.1.8",
+    "eslint": "^1.0.0"
+  }
+}
