@@ -1,0 +1,211 @@
+[{
+    "heading": "Care About Your Craft",
+    "details": "Why spend your life developing software unless you care about doing it well?"
+}, {
+    "heading": "Provide Options, Don’t Make Lame Excuses",
+    "details": "Instead of excuses, provide options. Don’t say it can’t be done; explain what can be done."
+}, {
+    "heading": "Be a Catalyst for Change",
+    "details": "You can’t force change on people. Instead, show them how the future might be and help them participate in creating it."
+}, {
+    "heading": "Make Quality a Requirements Issue",
+    "details": "Involve your users in determining the project’s real quality requirements."
+}, {
+    "heading": "Critically Analyze What You Read and Hear",
+    "details": "Don’t be swayed by vendors, media hype, or dogma. Analyze information in terms of you and your project."
+}, {
+    "heading": "DRY—Don’t Repeat Yourself",
+    "details": "Every piece of knowledge must have a single, unambiguous, authoritative representation within a system."
+}, {
+    "heading": "Eliminate Effects Between Unrelated Things",
+    "details": "Design components that are self-contained, independent, and have a single, well-defined purpose."
+}, {
+    "heading": "Use Tracer Bullets to Find the Target",
+    "details": "Tracer bullets let you home in on your target by trying things and seeing how close they land."
+}, {
+    "heading": "Program Close to the Problem Domain",
+    "details": "Design and code in your user’s language."
+}, {
+    "heading": "Iterate the Schedule with the Code",
+    "details": "Use experience you gain as you implement to refine the project time scales."
+}, {
+    "heading": "Use the Power of Command Shells",
+    "details": "Use the shell when graphical user interfaces don’t cut it."
+}, {
+    "heading": "Always Use Source Code Control",
+    "details": "Source code control is a time machine for your work—you can go back."
+}, {
+    "heading": "Don’t Panic When Debugging",
+    "details": "Take a deep breath and THINK! about what could be causing the bug."
+}, {
+    "heading": "Don’t Assume It—Prove It",
+    "details": "Prove your assumptions in the actual environment—with real data and boundary conditions."
+}, {
+    "heading": "Write Code That Writes Code",
+    "details": "Code generators increase your productivity and help avoid duplication."
+}, {
+    "heading": "Design with Contracts",
+    "details": "Use contracts to document and verify that code does no more and no less than it claims to do."
+}, {
+    "heading": "Use Assertions to Prevent the Impossible",
+    "details": "Assertions validate your assumptions. Use them to protect your code from an uncertain world."
+}, {
+    "heading": "Finish What You Start",
+    "details": "Where possible, the routine or object that allocates a resource should be responsible for deallocating it."
+}, {
+    "heading": "Configure, Don’t Integrate",
+    "details": "Implement technology choices for an application as configuration options, not through integration or engineering."
+}, {
+    "heading": "Analyze Workflow to Improve Concurrency",
+    "details": "Exploit concurrency in your user’s workflow."
+}, {
+    "heading": "Always Design for Concurrency",
+    "details": "Allow for concurrency, and you’ll design cleaner interfaces with fewer assumptions."
+}, {
+    "heading": "Use Blackboards to Coordinate Workflow",
+    "details": "Use blackboards to coordinate disparate facts and agents, while maintaining independence and isolation among participants."
+}, {
+    "heading": "Estimate the Order of Your Algorithms",
+    "details": "Get a feel for how long things are likely to take before you write code."
+}, {
+    "heading": "Refactor Early, Refactor Often",
+    "details": "Just as you might weed and rearrange a garden, rewrite, rework, and re-architect code when it needs it. Fix the root of the problem."
+}, {
+    "heading": "Test Your Software, or Your Users Will",
+    "details": "Test ruthlessly. Don’t make your users find bugs for you."
+}, {
+    "heading": "Don’t Gather Requirements—Dig for Them",
+    "details": "Requirements rarely lie on the surface. They’re buried deep beneath layers of assumptions, misconceptions, and politics."
+}, {
+    "heading": "Abstractions Live Longer than Details",
+    "details": "Invest in the abstraction, not the implementation. Abstractions can survive the barrage of changes from different implementations and new technologies."
+}, {
+    "heading": "Don’t Think Outside the Box—Find the Box",
+    "details": "When faced with an impossible problem, identify the real constraints. Ask yourself: “Does it have to be done this way? Does it have to be done at all?”"
+}, {
+    "heading": "Some Things Are Better Done than Described",
+    "details": "Don’t fall into the specification spiral—at some point you need to start coding."
+}, {
+    "heading": "Costly Tools Don’t Produce Better Designs",
+    "details": "Beware of vendor hype, industry dogma, and the aura of the price tag. Judge tools on their merits."
+}, {
+    "heading": "Don’t Use Manual Procedures",
+    "details": "A shell script or batch file will execute the same instructions, in the same order, time after time."
+}, {
+    "heading": "Coding Ain’t Done ‘Til All the Tests Run",
+    "details": "‘Nuff said."
+}, {
+    "heading": "Test State Coverage, Not Code Coverage",
+    "details": "Identify and test significant program states. Just testing lines of code isn’t enough."
+}, {
+    "heading": "English is Just a Programming Language",
+    "details": "Write documents as you would write code: honor the DRY principle, use metadata, MVC, automatic generation, and so on."
+}, {
+    "heading": "Gently Exceed Your Users’ Expectations",
+    "details": "Come to understand your users’ expectations, then deliver just that little bit more."
+}, {
+    "heading": "Think! About Your Work",
+    "details": "Turn off the autopilot and take control. Constantly critique and appraise your work."
+}, {
+    "heading": "Don’t Live with Broken Windows",
+    "details": "Fix bad designs, wrong decisions, and poor code when you see them."
+}, {
+    "heading": "Remember the Big Picture",
+    "details": "Don’t get so engrossed in the details that you forget to check what’s happening around you."
+}, {
+    "heading": "Invest Regularly in Your Knowledge Portfolio",
+    "details": "Make learning a habit."
+}, {
+    "heading": "It’s Both What You Say and the Way You Say It",
+    "details": "There’s no point in having great ideas if you don’t communicate them effectively."
+}, {
+    "heading": "Make It Easy to Reuse",
+    "details": "If it’s easy to reuse, people will. Create an environment that supports reuse."
+}, {
+    "heading": "There Are No Final Decisions",
+    "details": "No decision is cast in stone. Instead, consider each as being written in the sand at the beach, and plan for change."
+}, {
+    "heading": "Prototype to Learn",
+    "details": "Prototyping is a learning experience. Its value lies not in the code you produce, but in the lessons you learn."
+}, {
+    "heading": "Estimate to Avoid Surprises",
+    "details": "Estimate before you start. You’ll spot potential problems up front."
+}, {
+    "heading": "Keep Knowledge in Plain Text",
+    "details": "Plain text won’t become obsolete. It helps leverage your work and simplifies debugging and testing."
+}, {
+    "heading": "Use a Single Editor Well",
+    "details": "The editor should be an extension of your hand; make sure your editor is configurable, extensible, and programmable."
+}, {
+    "heading": "Fix the Problem, Not the Blame",
+    "details": "It doesn’t really matter whether the bug is your fault or someone else’s—it is still your problem, and it still needs to be fixed."
+}, {
+    "heading": "“select” Isn’t Broken",
+    "details": "It is rare to find a bug in the OS or the compiler, or even a third-party product or library. The bug is most likely in the application."
+}, {
+    "heading": "Learn a Text Manipulation Language",
+    "details": "You spend a large part of each day working with text. Why not have the computer do some of it for you?"
+}, {
+    "heading": "You Can’t Write Perfect Software",
+    "details": "Software can’t be perfect. Protect your code and users from the inevitable errors."
+}, {
+    "heading": "Crash Early",
+    "details": "A dead program normally does a lot less damage than a crippled one."
+}, {
+    "heading": "Use Exceptions for Exceptional Problems",
+    "details": "Exceptions can suffer from all the readability and maintainability problems of classic spaghetti code. Reserve exceptions for exceptional things."
+}, {
+    "heading": "Minimize Coupling Between Modules",
+    "details": "Avoid coupling by writing “shy” code and applying the Law of Demeter."
+}, {
+    "heading": "Put Abstractions in Code, Details in Metadata",
+    "details": "Program for the general case, and put the specifics outside the compiled code base."
+}, {
+    "heading": "Design Using Services",
+    "details": "Design in terms of services—independent, concurrent objects behind well-defined, consistent interfaces."
+}, {
+    "heading": "Separate Views from Models",
+    "details": "Gain flexibility at low cost by designing your application in terms of models and views."
+}, {
+    "heading": "Don’t Program by Coincidence",
+    "details": "Rely only on reliable things. Beware of accidental complexity, and don’t confuse a happy coincidence with a purposeful plan."
+}, {
+    "heading": "Test Your Estimates",
+    "details": "Mathematical analysis of algorithms doesn’t tell you everything. Try timing your code in its target environment."
+}, {
+    "heading": "Design to Test",
+    "details": "Start thinking about testing before you write a line of code."
+}, {
+    "heading": "Don’t Use Wizard Code You Don’t Understand",
+    "details": "Wizards can generate reams of code. Make sure you understand all of it before you incorporate it into your project."
+}, {
+    "heading": "Work with a User to Think Like a User",
+    "details": "It’s the best way to gain insight into how the system will really be used."
+}, {
+    "heading": "Use a Project Glossary",
+    "details": "Create and maintain a single source of all the specific terms and vocabulary for a project."
+}, {
+    "heading": "Start When You’re Ready",
+    "details": "You’ve been building experience all your life. Don’t ignore niggling doubts."
+}, {
+    "heading": "Don’t Be a Slave to Formal Methods",
+    "details": "Don’t blindly adopt any technique without putting it into the context of your development practices and capabilities."
+}, {
+    "heading": "Organize Teams Around Functionality",
+    "details": "Don’t separate designers from coders, testers from data modelers. Build teams the way you build code."
+}, {
+    "heading": "Test Early. Test Often. Test Automatically.",
+    "details": "Tests that run with every build are much more effective than test plans that sit on a shelf."
+}, {
+    "heading": "Use Saboteurs to Test Your Testing",
+    "details": "Introduce bugs on purpose in a separate copy of the source to verify that testing will catch them."
+}, {
+    "heading": "Find Bugs Once",
+    "details": "Once a human tester finds a bug, it should be the last time a human tester finds that bug. Automatic tests should check for it from then on."
+}, {
+    "heading": "Build Documentation In, Don’t Bolt It On",
+    "details": "Documentation created separately from code is less likely to be correct and up to date."
+}, {
+    "heading": "Sign Your Work",
+    "details": "Craftsmen of an earlier age were proud to sign their work. You should be, too."
+}]
