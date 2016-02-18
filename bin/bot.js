@@ -19,7 +19,7 @@ var token = process.env.BOT_API_KEY || require('../token');
 var filePath = process.env.BOT_FILE_PATH ||
                resolve(__dirname, '..', 'data', 'pragmatic-programmer.json');
 var name = process.env.BOT_NAME || 'Tipsbot';
-var channel = process.env.BOT_CHANNEL || 'test';
+var channel = process.env.BOT_CHANNEL || 'general';
 var startIndex = process.env.BOT_START_INDEX || 0;
 
 var tipsbot = new TipsBot({
