@@ -31,3 +31,5 @@ var tipsbot = new TipsBot({
 });
 
 tipsbot.run();
+
+module.exports = tipsbot;
