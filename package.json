@@ -36,10 +36,12 @@
   "dependencies": {
     "async": "^1.4.1",
     "babel": "^6.5.2",
-    "babel-preset-stage-0": "^6.5.0",
     "babel-preset-es2015": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.5.2",
+    "cron-parser": "^1.1.0",
     "node-schedule": "^1.0.0",
+    "prettycron": "^0.10.0",
     "slackbots": "^0.5.1"
   },
   "devDependencies": {
