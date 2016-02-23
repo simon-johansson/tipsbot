@@ -1,6 +1,6 @@
 {
   "name": "tipsbot",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "a Slack bot that gives you useful tips",
   "keywords": [
     "Slack",
@@ -36,6 +36,7 @@
   "dependencies": {
     "async": "^1.4.1",
     "babel": "^6.5.2",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.5.2",
