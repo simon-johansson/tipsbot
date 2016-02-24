@@ -1,4 +1,7 @@
 
+import 'babel-polyfill';
+
+import { existsSync } from 'fs';
 import { expect } from 'chai';
 import sinon from 'sinon';
 
@@ -12,22 +15,26 @@ describe('Tipsbot', () => {
   let tipsbot;
 
   describe('#constructor()', () => {
-    beforeEach(() => {});
 
-    it('takes "token", "name", "filePath", "channel" & "startIndex" in settings object', () => {
+    it('takes settings object', () => {
       const tipsbot = new Tipsbot({
         token: 'token',
         name: 'name',
         filePath: 'path',
         channel: 'channel',
-        startIndex: 'index'
+        startIndex: 0,
+        schedule: 'schedule',
+        shouldNotExist: 'nope',
       });
 
       expect(tipsbot).to.have.property('token', 'token');
       expect(tipsbot).to.have.property('name', 'name');
       expect(tipsbot).to.have.property('filePath', 'path');
       expect(tipsbot).to.have.property('channel', 'channel');
-      expect(tipsbot).to.have.property('tipIndex', 'index');
+      expect(tipsbot).to.have.property('tipIndex', 0);
+      expect(tipsbot).to.have.property('schedule', 'schedule');
+
+      expect(tipsbot).to.not.have.property('shouldNotExist');
     });
 
     it('requires "token" in settings object', () => {
@@ -36,19 +43,96 @@ describe('Tipsbot', () => {
     });
   });
 
-  describe('environment variables', () => {});
 
   describe('tips JSON file', () => {
     it('throw if JSON file does not exist', () => {});
     it('throw if JSON file follows wrong format', () => {});
-    it('', () => {});
   });
 
-  describe('post schedule', () => {});
+  describe('schedule', () => {});
 
   describe('post tips', () => {
     it('post first tip', () => {});
     it('reset tip index when end of queue is reached', () => {});
     it('set tip index with env variable', () => {});
+  });
+
+  describe('CLI', () => {
+    const resetEnvironmentVariables = () => {
+      process.env['BOT_API_KEY'] = '';
+      process.env['BOT_NAME'] = '';
+      process.env['BOT_FILE_PATH'] = '';
+      process.env['BOT_CHANNEL'] = '';
+      process.env['BOT_SCHEDULE'] = '';
+      process.env['BOT_START_INDEX'] = '';
+    };
+
+    describe('sets default values', () => {
+      beforeEach(() => {
+        resetEnvironmentVariables();
+      });
+
+      it('name', () => {
+        expect(bin()).to.have.property('name', 'Tipsbot');
+      });
+
+      it('file path', () => {
+        expect(existsSync(bin().filePath)).to.be.true;
+      });
+
+      it('channel', () => {
+        expect(bin()).to.have.property('channel', 'general');
+      });
+
+      it('schedule', () => {
+        expect(bin()).to.have.property('schedule', '0 9 * * 1,2,3,4,5');
+      });
+
+      it('start index', () => {
+        expect(bin()).to.have.property('tipIndex', 0);
+      });
+    });
+
+    describe('set settings object via environment variables', () => {
+      beforeEach(() => {
+        resetEnvironmentVariables();
+      });
+
+      it('token', () => {
+        const val = 'abc123';
+        process.env['BOT_API_KEY'] = val;
+        expect(bin()).to.have.property('token', val);
+      });
+
+      it('name', () => {
+        const val = 'simon';
+        process.env['BOT_NAME'] = val;
+        expect(bin()).to.have.property('name', val);
+      });
+
+      it('file path', () => {
+        const val = 'path/to/file';
+        process.env['BOT_FILE_PATH'] = val;
+        expect(bin()).to.have.property('filePath', val);
+      });
+
+      it('channel', () => {
+        const val = 'tips';
+        process.env['BOT_CHANNEL'] = val;
+        expect(bin()).to.have.property('channel', val);
+      });
+
+      it('schedule', () => {
+        const val = 'schedule';
+        process.env['BOT_SCHEDULE'] = val;
+        expect(bin()).to.have.property('schedule', val);
+      });
+
+      it('start index', () => {
+        const val = 10;
+        process.env['BOT_START_INDEX'] = val;
+        expect(bin()).to.have.property('tipIndex', val);
+      });
+    });
   });
 });
