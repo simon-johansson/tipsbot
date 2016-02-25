@@ -2,14 +2,20 @@
 import 'babel-polyfill';
 
 import { existsSync } from 'fs';
-import { expect } from 'chai';
+import { resolve } from 'path';
+import chai from 'chai';
 import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
+
+const { expect } = chai;
+chai.use(sinonChai);
 
 import Tipsbot from '../lib/tipsbot';
-import bin from '../bin/bot';
+import * as bin from '../bin/bot';
 
-sinon.stub(Tipsbot.prototype, 'login', () => { return false; });
-sinon.stub(Tipsbot.prototype, 'run', () => { return false; });
+sinon.stub(Tipsbot.prototype, 'login', () =>  false);
+sinon.stub(Tipsbot.prototype, 'run', () => false);
+// sinon.stub(process, 'exit', () => false);
 
 describe('Tipsbot', () => {
   let tipsbot;
@@ -44,8 +50,29 @@ describe('Tipsbot', () => {
   });
 
 
-  describe('tips JSON file', () => {
-    it('throw if JSON file does not exist', () => {});
+  describe('JSON file', () => {
+    let sandbox;
+
+    beforeEach(() => {
+      sandbox = sinon.sandbox.create();
+      sandbox.stub(process, 'exit', () => false);
+      sandbox.spy(console, 'log');
+    });
+
+    afterEach(() => {
+      sandbox.restore();
+    });
+
+    it('throw if JSON file does not exist', () => {
+      const token = 'token';
+      const filePath = resolve(__dirname, 'file-does-not-exist.json');
+      const bot = new Tipsbot({token, filePath});
+      bot._loadTipsFile();
+
+      expect(console.log).to.have.been.calledWithMatch('file-does-not-exist.json');
+      expect(process.exit).to.have.been.calledOnce;
+    });
+
     it('throw if JSON file follows wrong format', () => {});
   });
 
@@ -67,33 +94,33 @@ describe('Tipsbot', () => {
       process.env['BOT_START_INDEX'] = '';
     };
 
-    describe('sets default values', () => {
+    describe('default values', () => {
       beforeEach(() => {
         resetEnvironmentVariables();
       });
 
       it('name', () => {
-        expect(bin()).to.have.property('name', 'Tipsbot');
+        expect(bin.create()).to.have.property('name', 'Tipsbot');
       });
 
       it('file path', () => {
-        expect(existsSync(bin().filePath)).to.be.true;
+        expect(existsSync(bin.create().filePath)).to.be.true;
       });
 
       it('channel', () => {
-        expect(bin()).to.have.property('channel', 'general');
+        expect(bin.create()).to.have.property('channel', 'general');
       });
 
       it('schedule', () => {
-        expect(bin()).to.have.property('schedule', '0 9 * * 1,2,3,4,5');
+        expect(bin.create()).to.have.property('schedule', '0 9 * * 1,2,3,4,5');
       });
 
       it('start index', () => {
-        expect(bin()).to.have.property('tipIndex', 0);
+        expect(bin.create()).to.have.property('tipIndex', 0);
       });
     });
 
-    describe('set settings object via environment variables', () => {
+    describe('environment variables', () => {
       beforeEach(() => {
         resetEnvironmentVariables();
       });
@@ -101,37 +128,37 @@ describe('Tipsbot', () => {
       it('token', () => {
         const val = 'abc123';
         process.env['BOT_API_KEY'] = val;
-        expect(bin()).to.have.property('token', val);
+        expect(bin.create()).to.have.property('token', val);
       });
 
       it('name', () => {
         const val = 'simon';
         process.env['BOT_NAME'] = val;
-        expect(bin()).to.have.property('name', val);
+        expect(bin.create()).to.have.property('name', val);
       });
 
       it('file path', () => {
         const val = 'path/to/file';
         process.env['BOT_FILE_PATH'] = val;
-        expect(bin()).to.have.property('filePath', val);
+        expect(bin.create()).to.have.property('filePath', val);
       });
 
       it('channel', () => {
         const val = 'tips';
         process.env['BOT_CHANNEL'] = val;
-        expect(bin()).to.have.property('channel', val);
+        expect(bin.create()).to.have.property('channel', val);
       });
 
       it('schedule', () => {
         const val = 'schedule';
         process.env['BOT_SCHEDULE'] = val;
-        expect(bin()).to.have.property('schedule', val);
+        expect(bin.create()).to.have.property('schedule', val);
       });
 
       it('start index', () => {
         const val = 10;
         process.env['BOT_START_INDEX'] = val;
-        expect(bin()).to.have.property('tipIndex', val);
+        expect(bin.create()).to.have.property('tipIndex', val);
       });
     });
   });
