@@ -18,14 +18,14 @@
   },
   "main": "lib/tipsbot.js",
   "bin": {
-    "tipsbot": "bin/bot.js"
+    "tipsbot": "bin/index.js"
   },
   "scripts": {
-    "start": "node bin/bot.js",
+    "start": "node bin/index.js",
     "test": "./node_modules/.bin/mocha --compilers js:babel-register",
-    "watch": "./node_modules/.bin/mocha --watch --compilers js:babel-register",
+    "test:watch": "./node_modules/.bin/mocha --watch --compilers js:babel-register",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "commit": "git-cz"
+    "commit": "npm run test && git-cz"
   },
   "author": {
     "name": "Simon Johansson",
