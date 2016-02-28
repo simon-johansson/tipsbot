@@ -1,35 +1,22 @@
-#!/usr/bin/env node
 
-'use strict';
+import { existsSync } from 'fs';
+import { resolve } from 'path';
+import TipsBot from '../lib/tipsbot';
 
-/**
- * TipsBot launcher script.
- *
- * @author Simon Johansson <simon.johansson@screeninteraction.com>
- */
+const tokenPath = resolve(__dirname, '..', 'token.js');
+const defaultToken = existsSync(tokenPath) ? require('../token') : null;
+const defaultName = 'Tipsbot';
+const defaultTips = resolve(__dirname, '..', 'data', 'pragmatic-programmer.json');
+const defaultChannel = 'general';
+const defaultSchedule = '0 9 * * 1,2,3,4,5'; // 09:00 on monday-friday
+const defaultStartIndex = 0;
 
- require('babel-register')({
-   presets: ['es2015', 'stage-0']
- });
-
-var resolve = require('path').resolve;
-var TipsBot = require('../lib/tipsbot').default;
-
-var token = process.env.BOT_API_KEY || require('../token');
-var filePath = process.env.BOT_FILE_PATH ||
-               resolve(__dirname, '..', 'data', 'pragmatic-programmer.json');
-var name = process.env.BOT_NAME || 'Tipsbot';
-var channel = process.env.BOT_CHANNEL || 'general';
-var startIndex = process.env.BOT_START_INDEX || 0;
-
-var tipsbot = new TipsBot({
-  token: token,
-  filePath: filePath,
-  name: name,
-  channel: channel,
-  startIndex: startIndex
-});
-
-tipsbot.run();
-
-module.exports = tipsbot;
+export const create = () =>
+  new TipsBot({
+    token: process.env.BOT_API_KEY || defaultToken,
+    name: process.env.BOT_NAME || defaultName,
+    filePath: process.env.BOT_FILE_PATH || defaultTips,
+    channel: process.env.BOT_CHANNEL || defaultChannel,
+    schedule: process.env.BOT_SCHEDULE || defaultSchedule,
+    startIndex: process.env.BOT_START_INDEX || defaultStartIndex,
+  });
