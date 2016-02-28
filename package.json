@@ -1,6 +1,6 @@
 {
   "name": "tipsbot",
-  "version": "1.0.0",
+  "version": "0.0.0-semantically-released",
   "description": "a Slack bot that gives you useful tips",
   "keywords": [
     "Slack",
@@ -23,7 +23,9 @@
   "scripts": {
     "start": "node bin/bot.js",
     "test": "./node_modules/.bin/mocha --compilers js:babel-register",
-    "watch": "./node_modules/.bin/mocha --watch --compilers js:babel-register"
+    "watch": "./node_modules/.bin/mocha --watch --compilers js:babel-register",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "commit": "git-cz"
   },
   "author": {
     "name": "Simon Johansson",
@@ -48,9 +50,21 @@
   "devDependencies": {
     "babel-eslint": "^4.1.8",
     "chai": "^3.5.0",
+    "commitizen": "^2.5.0",
+    "cz-conventional-changelog": "^1.1.5",
     "eslint": "^1.0.0",
+    "ghooks": "^1.0.3",
     "mocha": "^2.4.5",
+    "semantic-release": "^4.3.5",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    },
+    "ghooks": {
+      "pre-commit": "npm run test"
+    }
   }
 }
