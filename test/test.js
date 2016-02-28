@@ -86,7 +86,7 @@ describe('Tipsbot', () => {
 
   describe('CLI', () => {
     const resetEnvironmentVariables = () => {
-      process.env['BOT_API_KEY'] = '';
+      process.env['BOT_API_KEY'] = 'token';
       process.env['BOT_NAME'] = '';
       process.env['BOT_FILE_PATH'] = '';
       process.env['BOT_CHANNEL'] = '';
