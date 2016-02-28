@@ -1,6 +1,5 @@
 {
   "name": "tipsbot",
-  "version": "0.0.0-semantically-released",
   "description": "a Slack bot that gives you useful tips",
   "keywords": [
     "Slack",
