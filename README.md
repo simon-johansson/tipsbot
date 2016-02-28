@@ -5,6 +5,8 @@
 
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
+[![Travis](https://img.shields.io/travis/simon-johansson/tipsbot.svg)](https://travis-ci.org/simon-johansson/tipsbot)
+
 [![dependencies](https://img.shields.io/david/simon-johansson/tipsbot.svg)](https://david-dm.org/simon-johansson/tipsbot)
 [![devDependencies](https://img.shields.io/david/dev/simon-johansson/tipsbot.svg)](https://david-dm.org/simon-johansson/tipsbot#info=devDependencies)
 
