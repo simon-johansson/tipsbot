@@ -10,7 +10,7 @@ import sinonChai from 'sinon-chai';
 const { expect } = chai;
 chai.use(sinonChai);
 
-import Tipsbot from '../lib/tipsbot';
+import Tipsbot from '../src/tipsbot';
 import * as bin from '../bin/bot';
 
 sinon.stub(Tipsbot.prototype, 'login', () =>  false);
