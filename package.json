@@ -22,8 +22,10 @@
   },
   "scripts": {
     "start": "node bin/index.js",
-    "test": "./node_modules/.bin/mocha --compilers js:babel-register",
-    "test:watch": "./node_modules/.bin/mocha --watch --compilers js:babel-register",
+    "lint": "./node_modules/.bin/eslint .",
+    "mocha": "./node_modules/.bin/mocha --compilers js:babel-register",
+    "test": "npm run lint && npm run mocha",
+    "test:watch": "npm run mocha -- --watch",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "commit": "npm run test && git-cz"
   },
