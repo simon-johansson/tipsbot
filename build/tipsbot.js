@@ -182,7 +182,7 @@ var TipsBot = (_class = function (_Bot) {
   }, {
     key: '_getNextTip',
     value: function _getNextTip() {
-      this.tipIndex = this.tipIndex >= _pragmaticProgrammer2.default.length - 1 ? 0 : this.tipIndex++;
+      this.tipIndex = this.tipIndex >= this.tips.length - 1 ? 0 : this.tipIndex++;
       return this._formatTipsMessage(_pragmaticProgrammer2.default[this.tipIndex]);
     }
   }, {

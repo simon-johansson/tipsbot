@@ -77,7 +77,7 @@ export default class TipsBot extends Bot {
   }
 
   _getNextTip() {
-    this.tipIndex = this.tipIndex >= tips.length - 1 ? 0 : this.tipIndex++;
+    this.tipIndex = this.tipIndex >= this.tips.length - 1 ? 0 : this.tipIndex++;
     return this._formatTipsMessage(tips[this.tipIndex]);
   }
 
