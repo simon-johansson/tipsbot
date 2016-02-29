@@ -1,4 +1,6 @@
 
+require('babel-polyfill');
+
 var existsSync = require('fs').existsSync;
 var resolve = require('path').resolve;
 var TipsBot = require('../build/tipsbot').default;

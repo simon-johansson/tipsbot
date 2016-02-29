@@ -8,5 +8,4 @@
  * @author Simon Johansson <simon.johansson@screeninteraction.com>
  */
 
-require('babel-polyfill');
 require('./bot').create().run();
