@@ -91,9 +91,14 @@ export default class TipsBot extends Bot {
     const date = new Date().toString();
     const cron = cronPrettyPrint(this.schedule);
 
+    this.postMessageToChannel(this.channel, singleLineString`
+      Hi, I am *${name}*! I will post tips in this channel ${cron}. Hope you'll find them useful.
+    `);
+
     return `
-      ${date} - Bot (${name}) is now running!
-      Will post tips to team '${team.name}' on channel '#${channel}' ${cron}
+      ${date} - Bot is now running!
+      Will post tips to team '${team.name}' on channel '#${channel}' ${cron}.
+      Take a look at your Slack channel, you should have gotten a welcome message by ${name}.
     `;
   }
 
