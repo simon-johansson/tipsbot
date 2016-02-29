@@ -16,12 +16,12 @@
   "bugs": {
     "url": "https://github.com/simon-johansson/tipsbot/issues"
   },
-  "main": "lib/tipsbot.js",
+  "main": "bin/bot.js",
   "bin": {
     "tipsbot": "bin/index.js"
   },
   "scripts": {
-    "start": "node bin/index.js",
+    "start": "npm run build && BOT_CHANNEL='test' node bin/index.js",
     "lint": "./node_modules/.bin/eslint .",
     "mocha": "./node_modules/.bin/mocha --compilers js:babel-register",
     "test": "npm run lint && npm run mocha",
@@ -40,10 +40,7 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-polyfill": "^6.5.0",
-    "babel-preset-es2015": "^6.5.0",
-    "babel-preset-stage-0": "^6.5.0",
     "cron-parser": "^1.1.0",
     "node-schedule": "^1.0.0",
     "node-validator": "^0.1.22",
@@ -51,6 +48,9 @@
     "slackbots": "^0.5.1"
   },
   "devDependencies": {
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
     "babel-cli": "^6.5.1",
     "babel-eslint": "^5.0.0",
     "chai": "^3.5.0",

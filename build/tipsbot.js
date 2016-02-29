@@ -9,6 +9,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _desc, _value, _class;
 
+var _templateObject = _taggedTemplateLiteral(['\n      Hi, I am *', '*! I will post tips in this channel ', '. Hope you\'ll find them useful.\n    '], ['\n      Hi, I am *', '*! I will post tips in this channel ', '. Hope you\'ll find them useful.\n    ']);
+
 var _path = require('path');
 
 var _slackbots = require('slackbots');
@@ -28,6 +30,8 @@ var _pragmaticProgrammer = require('../data/pragmatic-programmer');
 var _pragmaticProgrammer2 = _interopRequireDefault(_pragmaticProgrammer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
 
@@ -196,7 +200,9 @@ var TipsBot = (_class = function (_Bot) {
       var date = new Date().toString();
       var cron = (0, _cronHelpers.cronPrettyPrint)(this.schedule);
 
-      return '\n      ' + date + ' - Bot (' + name + ') is now running!\n      Will post tips to team \'' + team.name + '\' on channel \'#' + channel + '\' ' + cron + '\n    ';
+      this.postMessageToChannel(this.channel, (0, _utils.singleLineString)(_templateObject, name, cron));
+
+      return '\n      ' + date + ' - Bot is now running!\n      Will post tips to team \'' + team.name + '\' on channel \'#' + channel + '\' ' + cron + '.\n      Take a look at your Slack channel, you should have gotten a welcome message by ' + name + '.\n    ';
     }
   }, {
     key: '_invalidFilePath',
