@@ -10,15 +10,26 @@ import sinonChai from 'sinon-chai';
 const { expect } = chai;
 chai.use(sinonChai);
 
-import Tipsbot from '../src/tipsbot';
-import * as bin from '../bin/bot';
+import data from '../data/pragmatic-programmer';
+
+import Tipsbot from '../src/bot/Tipsbot';
+import { create as createBot } from '../src/bot';
 
 sinon.stub(Tipsbot.prototype, 'login', () =>  false);
 sinon.stub(Tipsbot.prototype, 'run', () => false);
-// sinon.stub(process, 'exit', () => false);
+
+const resetEnvironmentVariables = () => {
+  process.env['BOT_API_KEY'] = 'token';
+  process.env['BOT_NAME'] = '';
+  process.env['BOT_FILE_PATH'] = '';
+  process.env['BOT_CHANNEL'] = '';
+  process.env['BOT_SCHEDULE'] = '';
+  process.env['BOT_START_INDEX'] = '';
+};
 
 describe('Tipsbot', () => {
   let tipsbot;
+  const token = 'token';
 
   describe('#constructor()', () => {
 
@@ -64,7 +75,6 @@ describe('Tipsbot', () => {
     });
 
     it('throw if JSON file does not exist', () => {
-      const token = 'token';
       const filePath = resolve(__dirname, 'file-does-not-exist.json');
       const bot = new Tipsbot({token, filePath});
       bot._loadTipsFile();
@@ -73,93 +83,115 @@ describe('Tipsbot', () => {
       expect(process.exit).to.have.been.calledOnce;
     });
 
-    it('throw if JSON file follows wrong format', () => {});
+    it.skip('throw if JSON file follows wrong format', () => {
+
+    });
   });
 
-  describe('schedule', () => {});
+  describe('CRON', () => {
+    it.skip('throw if CRON string is invalid', () => {
 
-  describe('post tips', () => {
-    it('post first tip', () => {});
-    it('reset tip index when end of queue is reached', () => {});
-    it('set tip index with env variable', () => {});
+    });
   });
 
-  describe('CLI', () => {
-    const resetEnvironmentVariables = () => {
-      process.env['BOT_API_KEY'] = 'token';
-      process.env['BOT_NAME'] = '';
-      process.env['BOT_FILE_PATH'] = '';
-      process.env['BOT_CHANNEL'] = '';
-      process.env['BOT_SCHEDULE'] = '';
-      process.env['BOT_START_INDEX'] = '';
-    };
+  describe('posting tips', () => {
+    let sandbox;
+    const testTips = require('./test-tips');
+    const filePath = resolve(__dirname, 'test-tips.json');
+    const createBotAndLoadJSON = startIndex => {
+      const bot = createBot({token, filePath, startIndex});
+      bot._loadTipsFile();
+      return bot;
+    }
 
-    describe('default values', () => {
-      beforeEach(() => {
-        resetEnvironmentVariables();
-      });
+    beforeEach(() => {
+      resetEnvironmentVariables();
 
-      it('name', () => {
-        expect(bin.create()).to.have.property('name', 'Tipsbot');
-      });
-
-      it('file path', () => {
-        expect(existsSync(bin.create().filePath)).to.be.true;
-      });
-
-      it('channel', () => {
-        expect(bin.create()).to.have.property('channel', 'general');
-      });
-
-      it('schedule', () => {
-        expect(bin.create()).to.have.property('schedule', '0 9 * * 1,2,3,4,5');
-      });
-
-      it('start index', () => {
-        expect(bin.create()).to.have.property('tipIndex', 0);
-      });
+      sandbox = sinon.sandbox.create();
+      sandbox.stub(Tipsbot.prototype, 'postMessageToChannel', () => false);
     });
 
-    describe('environment variables', () => {
-      beforeEach(() => {
-        resetEnvironmentVariables();
-      });
+    afterEach(() => {
+      sandbox.restore();
+    });
 
-      it('token', () => {
-        const val = 'abc123';
-        process.env['BOT_API_KEY'] = val;
-        expect(bin.create()).to.have.property('token', val);
-      });
+    it('post first tip in file if tips index is set to 0', () => {
+      let bot = createBotAndLoadJSON();
+      bot._postTip();
+      expect(bot.postMessageToChannel).to.have.been.calledOnce;
+      expect(bot.postMessageToChannel).to.have.been.calledWithMatch('general', testTips[0].details);
+    });
 
-      it('name', () => {
-        const val = 'simon';
-        process.env['BOT_NAME'] = val;
-        expect(bin.create()).to.have.property('name', val);
-      });
+    it('reset tip index when end of queue is reached', () => {
+      let bot = createBotAndLoadJSON(testTips.length - 1);
+      bot._postTip();
+      expect(bot.postMessageToChannel).to.have.been.calledWithMatch('general', testTips[3].details);
+      bot._postTip();
+      expect(bot.postMessageToChannel).to.have.been.calledWithMatch('general', testTips[0].details);
+    });
+  });
 
-      it('file path', () => {
-        const val = 'path/to/file';
-        process.env['BOT_FILE_PATH'] = val;
-        expect(bin.create()).to.have.property('filePath', val);
-      });
+  describe('default values', () => {
+    beforeEach(() => resetEnvironmentVariables());
 
-      it('channel', () => {
-        const val = 'tips';
-        process.env['BOT_CHANNEL'] = val;
-        expect(bin.create()).to.have.property('channel', val);
-      });
+    it('name', () => {
+      expect(createBot()).to.have.property('name', 'Tipsbot');
+    });
 
-      it('schedule', () => {
-        const val = 'schedule';
-        process.env['BOT_SCHEDULE'] = val;
-        expect(bin.create()).to.have.property('schedule', val);
-      });
+    it('file path', () => {
+      expect(existsSync(createBot().filePath)).to.be.true;
+    });
 
-      it('start index', () => {
-        const val = 10;
-        process.env['BOT_START_INDEX'] = val;
-        expect(bin.create()).to.have.property('tipIndex', val);
-      });
+    it('channel', () => {
+      expect(createBot()).to.have.property('channel', 'general');
+    });
+
+    it('schedule', () => {
+      expect(createBot()).to.have.property('schedule', '0 9 * * 1,2,3,4,5');
+    });
+
+    it('start index', () => {
+      expect(createBot()).to.have.property('tipIndex', 0);
+    });
+  });
+
+  describe('environment variables', () => {
+    beforeEach(() => resetEnvironmentVariables());
+
+    it('token', () => {
+      const val = 'abc123';
+      process.env['BOT_API_KEY'] = val;
+      expect(createBot()).to.have.property('token', val);
+    });
+
+    it('name', () => {
+      const val = 'simon';
+      process.env['BOT_NAME'] = val;
+      expect(createBot()).to.have.property('name', val);
+    });
+
+    it('file path', () => {
+      const val = 'path/to/file';
+      process.env['BOT_FILE_PATH'] = val;
+      expect(createBot()).to.have.property('filePath', val);
+    });
+
+    it('channel', () => {
+      const val = 'tips';
+      process.env['BOT_CHANNEL'] = val;
+      expect(createBot()).to.have.property('channel', val);
+    });
+
+    it('schedule', () => {
+      const val = 'schedule';
+      process.env['BOT_SCHEDULE'] = val;
+      expect(createBot()).to.have.property('schedule', val);
+    });
+
+    it('start index', () => {
+      const val = 10;
+      process.env['BOT_START_INDEX'] = val;
+      expect(createBot()).to.have.property('tipIndex', val);
     });
   });
 });
