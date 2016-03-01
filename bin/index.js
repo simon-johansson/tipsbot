@@ -8,4 +8,5 @@
  * @author Simon Johansson <simon.johansson@screeninteraction.com>
  */
 
-require('./bot').create().run();
+require('babel-polyfill');
+require('../build/bot/index.js').create().run();

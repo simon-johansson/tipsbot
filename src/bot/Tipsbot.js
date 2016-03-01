@@ -2,21 +2,19 @@
 import { resolve } from 'path';
 import Bot from 'slackbots';
 
-import formatValidator from './format-validator';
+import formatValidator from '../format-validator';
 
 import {
   cronValidator,
   cronPrettyPrint,
   cronJob
-} from './cron-helpers'
+} from '../cron-helpers'
 
 import {
   exit,
   print,
   singleLineString
-} from './utils';
-
-import tips from '../data/pragmatic-programmer';
+} from '../utils';
 
 export default class TipsBot extends Bot {
   constructor(settings) {
@@ -77,8 +75,8 @@ export default class TipsBot extends Bot {
   }
 
   _getNextTip() {
-    this.tipIndex = this.tipIndex >= this.tips.length - 1 ? 0 : this.tipIndex++;
-    return this._formatTipsMessage(tips[this.tipIndex]);
+    if (this.tipIndex >= this.tips.length) this.tipIndex = 0;
+    return this._formatTipsMessage(this.tips[this.tipIndex++]);
   }
 
   _formatTipsMessage(tip) {
