@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.create = undefined;
 
+require('babel-polyfill');
+
 var _fs = require('fs');
 
 var _path = require('path');

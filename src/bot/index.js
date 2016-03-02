@@ -1,4 +1,6 @@
 
+import 'babel-polyfill';
+
 import { existsSync } from 'fs';
 import { resolve } from 'path';
 import merge from 'lodash.merge';
