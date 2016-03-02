@@ -83,8 +83,15 @@ describe('Tipsbot', () => {
       expect(process.exit).to.have.been.calledOnce;
     });
 
-    it.skip('throw if JSON file follows wrong format', () => {
-
+    it('throw if JSON file follows wrong format', (done) => {
+      const filePath = resolve(__dirname, 'invalid-format.json');
+      const bot = new Tipsbot({token, filePath});
+      bot._loadTipsFile();
+      bot._validateTipsFormat().then(() => {
+        expect(process.exit).to.have.been.calledOnce;
+        expect(console.log).to.have.been.calledWithMatch('Invalid format of JSON file.');
+        done();
+      });
     });
   });
 
