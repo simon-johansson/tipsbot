@@ -9,7 +9,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _desc, _value, _class;
 
-var _templateObject = _taggedTemplateLiteral(['\n      Hi, I am *', '*! I will post tips in this channel ', '. Hope you\'ll find them useful.\n    '], ['\n      Hi, I am *', '*! I will post tips in this channel ', '. Hope you\'ll find them useful.\n    ']);
+var _templateObject = _taggedTemplateLiteral(['', ''], ['', '']);
 
 var _path = require('path');
 
@@ -78,6 +78,7 @@ var TipsBot = (_class = function (_Bot) {
     _this.filePath = settings.filePath;
     _this.channel = settings.channel;
     _this.schedule = settings.schedule;
+    _this.iconURL = settings.iconURL;
     _this.tipIndex = parseInt(settings.startIndex);
 
     _this.tips = null;
@@ -173,7 +174,7 @@ var TipsBot = (_class = function (_Bot) {
     key: '_postTip',
     value: function _postTip() {
       var tip = this._getNextTip();
-      this.postMessageToChannel(this.channel, tip);
+      this._postMessage(tip);
     }
   }, {
     key: '_getNextTip',
@@ -187,6 +188,11 @@ var TipsBot = (_class = function (_Bot) {
       return '*' + tip.heading + '*\n' + tip.details;
     }
   }, {
+    key: '_postMessage',
+    value: function _postMessage(msg) {
+      this.postMessageToChannel(this.channel, (0, _utils.singleLineString)(_templateObject, msg), { icon_url: this.iconURL });
+    }
+  }, {
     key: '_startMessage',
     value: function _startMessage() {
       var name = this.name;
@@ -196,9 +202,9 @@ var TipsBot = (_class = function (_Bot) {
       var date = new Date().toString();
       var cron = (0, _cronHelpers.cronPrettyPrint)(this.schedule);
 
-      this.postMessageToChannel(this.channel, (0, _utils.singleLineString)(_templateObject, name, cron));
+      this._postMessage('\n      Hi, I am *' + name + '*! I will post tips in this channel ' + cron + '. Hope you\'ll find them useful.\n    ');
 
-      return '\n      ' + date + ' - Bot is now running!\n      Will post tips to team \'' + team.name + '\' on channel \'#' + channel + '\' ' + cron + '.\n      Take a look at your Slack channel, you should have gotten a welcome message by ' + name + '.\n    ';
+      return '\n      ' + date + ' - Bot is now running!\n      Will post tips to team \'' + team.name + '\' on channel \'#' + channel + '\' ' + cron + '.\n      Take a look at your Slack channel, you should have gotten a welcome message from ' + name + '.\n    ';
     }
   }, {
     key: '_invalidFilePath',

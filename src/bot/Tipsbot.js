@@ -24,6 +24,7 @@ export default class TipsBot extends Bot {
     this.filePath = settings.filePath;
     this.channel = settings.channel;
     this.schedule = settings.schedule;
+    this.iconURL = settings.iconURL;
     this.tipIndex = parseInt(settings.startIndex);
 
     this.tips = null;
@@ -71,7 +72,7 @@ export default class TipsBot extends Bot {
 
   _postTip() {
     const tip = this._getNextTip();
-    this.postMessageToChannel(this.channel, tip);
+    this._postMessage(tip);
   }
 
   _getNextTip() {
@@ -83,20 +84,24 @@ export default class TipsBot extends Bot {
     return `*${tip.heading}*\n${tip.details}`;
   }
 
+  _postMessage(msg) {
+    this.postMessageToChannel(this.channel, singleLineString`${msg}`, {icon_url: this.iconURL});
+  }
+
   @print
   _startMessage() {
     const { name, channel, team } = this;
     const date = new Date().toString();
     const cron = cronPrettyPrint(this.schedule);
 
-    this.postMessageToChannel(this.channel, singleLineString`
+    this._postMessage(`
       Hi, I am *${name}*! I will post tips in this channel ${cron}. Hope you'll find them useful.
     `);
 
     return `
       ${date} - Bot is now running!
       Will post tips to team '${team.name}' on channel '#${channel}' ${cron}.
-      Take a look at your Slack channel, you should have gotten a welcome message by ${name}.
+      Take a look at your Slack channel, you should have gotten a welcome message from ${name}.
     `;
   }
 
