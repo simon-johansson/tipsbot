@@ -35,6 +35,7 @@ The Tipsbot is configurable through environment variables. There are several var
 | `BOT_CHANNEL`        | (optional) The Slack-channel Tipsbot will post to, defaults to 'general' |
 | `BOT_START_INDEX`    | (optional) The index for the first tips from the dataset, defaults to `0` |
 | `BOT_SCHEDULE`       | (optional) Cron string that specifies when to post tips, defaults to `0 9 * * 1,2,3,4,5` which is 09:00 on mon-fri |
+| `BOT_ICON_URL`       | (optional) ... |
 
 
 ## Launching the bot from source
@@ -45,6 +46,26 @@ $ npm start
 ```
 
 Don't forget to set your `BOT_API_KEY` environment variable before doing so. Alternatively you can also create a file called `token.js` in the root folder and put your token there (you can use the `token.js.sample` file as a reference).
+
+## Using Tipsbot programmatically
+
+```javascript
+var tipsbot = require('tipsbot')
+
+var bot = tipsbot.create({
+    token: <STRING>,
+    name: <STRING>,
+    filePath: <STRING>,
+    channel: <STRING>,
+    schedule: <STRING>,
+    startIndex: <NUMBER>,
+    iconURL: <STRING>,
+});
+
+bot.run();
+```
+
+The options object supplied to the `create` method will override environment variables.
 
 ## Format of JSON dataset
 If you supply your own JSON file with tips then make sure if follows this structure:
