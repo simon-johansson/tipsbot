@@ -7,7 +7,7 @@ import merge from 'lodash.merge';
 import TipsBot from './Tipsbot';
 
 const tokenPath = resolve(__dirname, '..', '..', 'token.js');
-const defaultToken = existsSync(tokenPath) ? require(tokenPath) : null;
+const defaultToken = existsSync(tokenPath) ? require(tokenPath) : '';
 const defaultName = 'Tipsbot';
 const defaultTips = resolve(__dirname, '..', '..', 'data', 'pragmatic-programmer.json');
 const defaultChannel = 'general';
