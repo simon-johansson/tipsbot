@@ -25,6 +25,7 @@ const resetEnvironmentVariables = () => {
   process.env['BOT_CHANNEL'] = '';
   process.env['BOT_SCHEDULE'] = '';
   process.env['BOT_START_INDEX'] = '';
+  process.env['BOT_ICON_URL'] = '';
 };
 
 describe('Tipsbot', () => {
@@ -34,13 +35,14 @@ describe('Tipsbot', () => {
   describe('#constructor()', () => {
 
     it('takes settings object', () => {
-      const tipsbot = new Tipsbot({
+      const tipsbot = createBot({
         token: 'token',
         name: 'name',
         filePath: 'path',
         channel: 'channel',
         startIndex: 0,
         schedule: 'schedule',
+        iconURL: 'image.png',
         shouldNotExist: 'nope',
       });
 
@@ -49,14 +51,10 @@ describe('Tipsbot', () => {
       expect(tipsbot).to.have.property('filePath', 'path');
       expect(tipsbot).to.have.property('channel', 'channel');
       expect(tipsbot).to.have.property('tipIndex', 0);
+      expect(tipsbot).to.have.property('iconURL', 'image.png');
       expect(tipsbot).to.have.property('schedule', 'schedule');
 
       expect(tipsbot).to.not.have.property('shouldNotExist');
-    });
-
-    it('requires "token" in settings object', () => {
-      expect(() => new Tipsbot()).to.throw(Error);
-      expect(() => new Tipsbot({token: 'token'})).to.not.throw(Error);
     });
   });
 
@@ -76,7 +74,7 @@ describe('Tipsbot', () => {
 
     it('throw if JSON file does not exist', () => {
       const filePath = resolve(__dirname, 'file-does-not-exist.json');
-      const bot = new Tipsbot({token, filePath});
+      const bot = createBot({token, filePath});
       bot._loadTipsFile();
 
       expect(console.log).to.have.been.calledWithMatch('file-does-not-exist.json');
@@ -85,7 +83,7 @@ describe('Tipsbot', () => {
 
     it('throw if JSON file follows wrong format', (done) => {
       const filePath = resolve(__dirname, 'invalid-format.json');
-      const bot = new Tipsbot({token, filePath});
+      const bot = createBot({token, filePath});
       bot._loadTipsFile();
       bot._validateTipsFormat().then(() => {
         expect(process.exit).to.have.been.calledOnce;
@@ -160,6 +158,10 @@ describe('Tipsbot', () => {
     it('start index', () => {
       expect(createBot()).to.have.property('tipIndex', 0);
     });
+
+    it('image url', () => {
+      expect(createBot()).to.have.property('iconURL', '');
+    });
   });
 
   describe('environment variables', () => {
@@ -199,6 +201,12 @@ describe('Tipsbot', () => {
       const val = 10;
       process.env['BOT_START_INDEX'] = val;
       expect(createBot()).to.have.property('tipIndex', val);
+    });
+
+    it('image url', () => {
+      const val = 'url.png';
+      process.env['BOT_ICON_URL'] = val;
+      expect(createBot()).to.have.property('iconURL', val);
     });
   });
 });
