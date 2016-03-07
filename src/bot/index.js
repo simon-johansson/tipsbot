@@ -11,7 +11,7 @@ const defaultToken = existsSync(tokenPath) ? require(tokenPath) : '';
 const defaultName = 'Tipsbot';
 const defaultTips = resolve(__dirname, '..', '..', 'data', 'pragmatic-programmer.json');
 const defaultChannel = 'general';
-const defaultSchedule = '0 9 * * 1,2,3,4,5'; // 09:00 on monday-friday
+const defaultSchedule = '0 9 * * 1-5'; // 09:00 on monday-friday
 const defaultStartIndex = 0;
 const defaultIconURL = '';
 
