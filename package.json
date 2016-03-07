@@ -28,9 +28,12 @@
     "test:watch": "npm run mocha -- --watch",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "commit": "npm run test && git-cz && npm run build && npm run git-build",
-    "build": "npm run clear && node_modules/.bin/babel src --out-dir build",
+    "build": "npm run clean && node_modules/.bin/babel src --out-dir build",
     "git-build": "git add build/ && git commit --amend",
-    "clear": "node_modules/.bin/rimraf build"
+    "clean": "node_modules/.bin/rimraf build",
+    "publish:patch": "npm test && npm run build && npm version patch && git push origin master --tags && npm publish",
+    "publish:minor": "npm test && npm run build && npm version minor && git push origin master --tags && npm publish",
+    "publish:major": "npm test && npm run build && npm version major && git push origin master --tags && npm publish"
   },
   "author": {
     "name": "Simon Johansson",
