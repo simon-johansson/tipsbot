@@ -22,11 +22,11 @@ var _Tipsbot2 = _interopRequireDefault(_Tipsbot);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var tokenPath = (0, _path.resolve)(__dirname, '..', '..', 'token.js');
-var defaultToken = (0, _fs.existsSync)(tokenPath) ? require(tokenPath) : null;
+var defaultToken = (0, _fs.existsSync)(tokenPath) ? require(tokenPath) : '';
 var defaultName = 'Tipsbot';
 var defaultTips = (0, _path.resolve)(__dirname, '..', '..', 'data', 'pragmatic-programmer.json');
 var defaultChannel = 'general';
-var defaultSchedule = '0 9 * * 1,2,3,4,5'; // 09:00 on monday-friday
+var defaultSchedule = '0 9 * * 1-5'; // 09:00 on monday-friday
 var defaultStartIndex = 0;
 var defaultIconURL = '';
 
