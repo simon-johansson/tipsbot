@@ -31,11 +31,11 @@ The Tipsbot is configurable through environment variables. There are several var
 |----------------------|-------------|
 | `BOT_API_KEY`        | (required) The API token needed by the bot to connect to your Slack organization |
 | `BOT_FILE_PATH`      | (optional) Variable that allows you to use a different tips dataset, defaults to tips from the Pragmatic Programmer |
-| `BOT_NAME`           | (optional) The name of your bot, defaults to 'Tipsbot' |
-| `BOT_CHANNEL`        | (optional) The Slack-channel Tipsbot will post to, defaults to 'general' |
+| `BOT_NAME`           | (optional) The name of your bot, defaults to `'Tipsbot'` |
+| `BOT_CHANNEL`        | (optional) The Slack-channel Tipsbot will post to, defaults to `'general'` |
 | `BOT_START_INDEX`    | (optional) The index for the first tips from the dataset, defaults to `0` |
 | `BOT_SCHEDULE`       | (optional) Cron string that specifies when to post tips, defaults to `0 9 * * 1,2,3,4,5` which is 09:00 on mon-fri |
-| `BOT_ICON_URL`       | (optional) ... |
+| `BOT_ICON_URL`       | (optional) URL to an image that will be used for the bot's avatar, defaults to `''` |
 
 
 ## Launching the bot from source
