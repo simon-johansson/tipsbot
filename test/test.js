@@ -152,7 +152,7 @@ describe('Tipsbot', () => {
     });
 
     it('schedule', () => {
-      expect(createBot()).to.have.property('schedule', '0 9 * * 1,2,3,4,5');
+      expect(createBot()).to.have.property('schedule', '0 9 * * 1-5');
     });
 
     it('start index', () => {
